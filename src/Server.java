@@ -7,16 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Server {
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
 
-    public static void writeBroadcastMessage(Message message) {
-        for(Connection connection : connectionMap.values()) {
-            try {
-                connection.send(message);
-            } catch (IOException e) {
-                ConsoleHelper.writeMessage("Message couldn't be sent to" + connection.getRemoteSocketAddress());
-            }
-        }
-    }
-
     public static void main(String[] args) {
         ConsoleHelper.writeMessage("Input server port:");
         int port = ConsoleHelper.readInt();
@@ -69,7 +59,24 @@ public class Server {
                 connection.send(new Message(MessageType.NAME_ACCEPTED));
 
                 return userName;
+            }
+        }
 
+        private void notifyUsers(Connection connection, String userName) throws IOException {
+            for(String name : connectionMap.keySet()) {
+                if(name.equals(userName))
+                    continue;
+                connection.send(new Message(MessageType.USER_ADDED, name));
+            }
+        }
+
+        public static void sendBroadcastMessage(Message message) {
+            for(Connection connection : connectionMap.values()) {
+                try {
+                    connection.send(message);
+                } catch (IOException e) {
+                    ConsoleHelper.writeMessage("Message couldn't be sent to" + connection.getRemoteSocketAddress());
+                }
             }
         }
     }
