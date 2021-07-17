@@ -1,3 +1,5 @@
+package server;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -65,7 +67,7 @@ public class Server {
 
                 Message message = connection.receive();
                 if(message.getType() != MessageType.USER_NAME) {
-                    ConsoleHelper.writeMessage("Message received from: " + socket.getRemoteSocketAddress() + ". The message type does not match the protocol.");
+                    ConsoleHelper.writeMessage("server.Message received from: " + socket.getRemoteSocketAddress() + ". The message type does not match the protocol.");
                     continue;
                 }
 
@@ -103,7 +105,7 @@ public class Server {
                     String textMessage = message.getData();
                     sendBroadcastMessage(new Message(MessageType.TEXT, userName + ": " + textMessage));
                 } else {
-                    ConsoleHelper.writeMessage("Message received from " + socket.getRemoteSocketAddress() + ". The message does not match the protocol.");
+                    ConsoleHelper.writeMessage("server.Message received from " + socket.getRemoteSocketAddress() + ". The message does not match the protocol.");
                 }
             }
         }
@@ -113,7 +115,7 @@ public class Server {
                 try {
                     connection.send(message);
                 } catch (IOException e) {
-                    ConsoleHelper.writeMessage("Message couldn't be sent to" + connection.getRemoteSocketAddress());
+                    ConsoleHelper.writeMessage("server.Message couldn't be sent to" + connection.getRemoteSocketAddress());
                 }
             }
         }
