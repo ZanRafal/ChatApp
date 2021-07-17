@@ -42,7 +42,45 @@ public class Client {
             connection.send(new Message(MessageType.TEXT, text));
         } catch (IOException e) {
             clientConnected = false;
-            ConsoleHelper.writeMessage("An error ocurred while sending message by " + connection.getRemoteSocketAddress());
+            ConsoleHelper.writeMessage("An error occurred while sending message by " + connection.getRemoteSocketAddress());
         }
+    }
+
+    public void run() {
+        SocketThread socketThread = getSocketThread();
+        socketThread.setDaemon(true);
+        socketThread.start();
+
+        try {
+            synchronized (this) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            ConsoleHelper.writeMessage("An error occurred while running the client.");
+            return;
+        }
+
+        if(clientConnected) {
+            ConsoleHelper.writeMessage("Connection established. To exit enter 'exit'.");
+        } else {
+            ConsoleHelper.writeMessage("An error occurred while working with the client.");
+        }
+
+        while (clientConnected) {
+            String message = ConsoleHelper.readString();
+
+            if(message.equalsIgnoreCase("exit")) {
+                break;
+            }
+            
+            if(shouldSendTextFromConsole()) {
+                sendTextMessage(message);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.run();
     }
 }
