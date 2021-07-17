@@ -77,7 +77,7 @@ public class Client {
                 Socket socket = new Socket(address, port);
                 connection = new Connection(socket);
                 clientHandshake();
-                clientMainLoop();
+                 clientMainLoop();
 
             } catch (IOException | ClassNotFoundException e) {
                 notifyConnectionStatusChanged(false);
