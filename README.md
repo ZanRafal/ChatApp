@@ -22,11 +22,28 @@ window you need to do the following steps:
 
 1. Run the **Server.main()** to start the main server.
      1. Type port (ex. 12). You should receive the message "*The server is currently running*".
-2. Run the **BotClient.main()** to let the bots connect.
+    
+    ![img.png](img.png)
+
+2. You can run the **Client.main()**, to add additional participants
+   (this will also work if someone tries to connect remotely).
+    1. Then you will be asked to enter server address 
+       and server port which in case of this example are
+       *localhost* and *12*.
+    2. Next step is to enter the user name of new participant.
+    
+    ![img_2.png](img_2.png)
+
+3. Run the **BotClient.main()** to let the bots connect.
      1. Enter the **localhost** when asked for server address (this is your own PC server address).
      2. When asked for the server port enter the same as you entered in the previous step.
-        Then you should see the message "*Connection established. To exit, enter "exit".*"
-3. Run the **ClientGuiController.main()** in order to start application window.
+        Then you should see the message "*Connection established. To exit, enter 'exit'.*"
+        
+    ![img_1.png](img_1.png)
+
+4. Run the **ClientGuiController.main()** in order to start application window.
      1. You will be asked again to enter the port and the server address, which are in this 
         case *12* and *localhost*. Then you will be asked to enter your *username*.
-4. If everything done correctly you should receive something like this:        
+5. If everything done correctly you should receive something like this:    
+
+    ![img_3.png](img_3.png)
