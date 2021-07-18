@@ -47,3 +47,17 @@ window you need to do the following steps:
 5. If everything done correctly you should receive something like this:    
 
     ![img_3.png](img_3.png)
+   
+------------------------------------
+# Commands handled by bot:
+
+List of commands that bot is capable of handling:
+
+- "date" for the current date.
+- "day" for the current day of month.
+- "month" for the current month.
+- "yeat" for the current year.
+- "time" for the current time.
+- "hour" for the current hour.
+- "minutes" for the minutes of current hour.
+- "seconds" for the number of seconds in the current minute.
