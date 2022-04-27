@@ -56,7 +56,7 @@ List of commands that bot is capable of handling:
 - "date" for the current date.
 - "day" for the current day of month.
 - "month" for the current month.
-- "yeat" for the current year.
+- "year" for the current year.
 - "time" for the current time.
 - "hour" for the current hour.
 - "minutes" for the minutes of current hour.
